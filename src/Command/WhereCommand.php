@@ -42,7 +42,9 @@ class WhereCommand extends BaseCommand {
   protected function execute(InputInterface $input, OutputInterface $output) {
     $io = $this->getIO();
     $package_list = $input->getArgument('packages');
-    
+
+    $composer = $this->getComposer(true, $input->getOption('no-plugins'));
+
     $show_installer_info = $input->getOption('installer-info');
 
     $repo_manager = $composer->getRepositoryManager();
@@ -58,7 +60,15 @@ class WhereCommand extends BaseCommand {
         $packages[] = $package_instance;
       }
       $install_path = realpath($install_manager->getInstallPath($package_instance));
-      $io->write($package_instance->getPrettyName() . ' is installed at ' . $install_path);
+      $message = '<fg=green>' . $package_instance->getPrettyName() . '</>';
+
+      if ($show_installer_info) {
+        $package_type = $package_instance->getType();
+        $installer = $install_manager->getInstaller($package_type);
+        $message .= '(<fg=yellow>type:' . $package_type . '</> managed by <fg=yellow>' . get_class($installer) . '</>)';
+      }
+      $message .= ' is installed at <fg=cyan>' . $install_path . '</>';
+      $io->write($message);
     }
 
     return 0;
