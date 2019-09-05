@@ -1,0 +1,25 @@
+{
+    "name": "roygoldman/composer-where",
+    "description": "A composer command to locate a package's installed path.",
+    "type": "composer-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Rich Gerdes",
+            "email": "rich@richgerdes.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "RoyGoldman\\ComposerWhere\\": "src/"
+        }
+    },
+    "extra": {
+        "class": "RoyGoldman\\ComposerWhere\\Plugin"
+    },
+    "require": {
+        "composer-plugin-api": "^1.1"
+    }
+}
