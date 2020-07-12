@@ -16,7 +16,6 @@ class Plugin implements PluginInterface, Capable {
    * {@inheritdoc}
    */
   public function getCapabilities() {
-    echo "test";
     return [
       'Composer\Plugin\Capability\CommandProvider' => 'RoyGoldman\ComposerWhere\CommandProvider',
     ];
