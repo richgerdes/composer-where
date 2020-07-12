@@ -15,7 +15,6 @@ class CommandProvider implements CapabilityCommandProvider {
    * {@inheritdoc}
    */
   public function getCommands() {
-    var_export("Test");
     return [
       new WhereCommand(),
     ];
